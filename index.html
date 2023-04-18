@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="index.js"></script>
+
+    <script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+<body>
+<h5>Main trad</h5>
+<button onclick="mainTread(false)">fetch data</button>
+<button onclick="mainTread(true)">fetch and render data</button>
+
+<h5>web worker</h5>
+<button onclick="webWorker()">web worker</button>
+<button onclick="getDataFromWebWorker()">get data from web worker</button>
+
+<h5>shared worker</h5>
+<button onclick="sharedWorker()">shared worker</button>
+<button onclick="getDataFromSharedWorker()">get data from web worker</button>
+
+<h5>service worker</h5>
+<button onclick="registerServiceWorker()">register service worker</button>
+<button onclick="serviceWorker()">service worker</button>
+<button onclick="getDataFromServiceWorker()">get data from service worker</button>
+<button onclick="killServiceWorker()">kill service worker</button>
+<br>
+
+<table>
+    <tr>
+        <th>body</th>
+        <th>postId</th>
+    </tr>
+    <tbody id="commentTable">
+    </tbody>
+</table>
+
+</body>
+</html>
