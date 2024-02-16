@@ -1,0 +1,23 @@
+{
+  "name": "worker-testing",
+  "version": "1.0.0",
+  "description": "Service and web worker test suite",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "satheeq",
+  "license": "ISC",
+  "devDependencies": {
+    "json-server": "^1.0.0-alpha.23"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/satheeq/worker-testing.git"
+  },
+  "bugs": {
+    "url": "https://github.com/satheeq/worker-testing/issues"
+  },
+  "homepage": "https://github.com/satheeq/worker-testing#readme"
+}
