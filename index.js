@@ -16,16 +16,75 @@ function getDataFromWebWorker() {
     webWorkerInstant.postMessage('getData');
 }
 
-function sharedWorker() {
+let mainWS;
+function connectWSMain() {
+    console.log('connecting to websocket');
+
+    mainWS = new WebSocket('ws://localhost:12345');
+
+    return new Promise((resolve, reject) => {
+        const timer = setInterval(() => {
+            if(mainWS.readyState === 1) {
+                console.log('websocket connection successful');
+
+                clearInterval(timer);
+
+                mainWS.onmessage = (message) => {
+                    console.log('ws data:', message.data);
+                };
+
+                resolve(mainWS);
+            }
+        }, 10);
+    });
+}
+
+function sendMessageMain() {
+    if (mainWS) {
+        mainWS.send(JSON.stringify({message: 'sample message from main'}));
+        console.log('message send to WS');
+    }
+}
+
+function createSharedWorker() {
+    console.error('creating shared worker instance');
+
     _createSharedWorkerInstant();
 
-    sharedWorkerInstant.port.postMessage(fetchURL);
+    // sharedWorkerInstant.port.postMessage(fetchURL);
 }
 
 function getDataFromSharedWorker() {
     _createWebWorkerInstant();
 
     sharedWorkerInstant.port.postMessage('getData');
+}
+
+function connectWebsocketShared() {
+    if (!sharedWorkerInstant) {
+        createSharedWorker();
+    }
+
+    console.log('main: postMessage - connectWS');
+    sharedWorkerInstant.port.postMessage('connectWS');
+}
+
+function sendMessageShared() {
+    if (!sharedWorkerInstant) {
+        createSharedWorker();
+    }
+
+    console.log('main: postMessage - sendMessage');
+    sharedWorkerInstant.port.postMessage('sendMessage');
+}
+
+function fetchDataShared() {
+    if (!sharedWorkerInstant) {
+        createSharedWorker();
+    }
+
+    console.log('main: postMessage - fetchDataShared');
+    sharedWorkerInstant.port.postMessage('fetchData');
 }
 
 function registerServiceWorker() {
@@ -110,7 +169,8 @@ function _createSharedWorkerInstant() {
 
         sharedWorkerInstant.port.onmessage = function(e) {
             collection = e.data;
-            console.error(e.data.length);
+            // console.log('message length:', e.data.length);
+            console.log('message from shared worker:', e.data);
             // renderTable();
         };
     }

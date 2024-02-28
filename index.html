@@ -8,19 +8,24 @@
     <script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
 <body>
-<h5>Main trad</h5>
+<h5>Main Thread</h5>
 <button onclick="mainTread(false)">fetch data</button>
 <button onclick="mainTread(true)">fetch and render data</button>
+<button onclick="connectWSMain(true)">ConnectWS</button>
+<button onclick="sendMessageMain(true)">Send Message</button>
 
-<h5>web worker</h5>
+<h5>Web Worker</h5>
 <button onclick="webWorker()">web worker</button>
 <button onclick="getDataFromWebWorker()">get data from web worker</button>
 
-<h5>shared worker</h5>
-<button onclick="sharedWorker()">shared worker</button>
-<button onclick="getDataFromSharedWorker()">get data from web worker</button>
+<h5>Shared Worker</h5>
+<button onclick="createSharedWorker()">Start</button>
+<button onclick="getDataFromSharedWorker()">get data from shared worker</button>
+<button onclick="connectWebsocketShared()">ConnectWS</button>
+<button onclick="sendMessageShared()">SendMessageShared</button>
+<button onclick="fetchDataShared()">FetchDataShared</button>
 
-<h5>service worker</h5>
+<h5>Service Worker</h5>
 <button onclick="registerServiceWorker()">register service worker</button>
 <button onclick="serviceWorker()">service worker</button>
 <button onclick="getDataFromServiceWorker()">get data from service worker</button>
@@ -28,6 +33,7 @@
 <br>
 
 <table>
+    <caption>sample caption</caption>
     <tr>
         <th>body</th>
         <th>postId</th>
