@@ -22,7 +22,7 @@ function connectWSMain() {
 
     mainWS = new WebSocket('ws://localhost:12345');
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         const timer = setInterval(() => {
             if(mainWS.readyState === 1) {
                 console.log('websocket connection successful');
@@ -165,7 +165,7 @@ function _createWebWorkerInstant() {
 
 function _createSharedWorkerInstant() {
     if (!sharedWorkerInstant) {
-        sharedWorkerInstant = new SharedWorker('sharedWorker.js');
+        sharedWorkerInstant = new SharedWorker('sharedWorker.js', {name: 'worker-testing shared worker'});
 
         sharedWorkerInstant.port.onmessage = function(e) {
             collection = e.data;
